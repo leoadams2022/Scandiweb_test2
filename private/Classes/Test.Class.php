@@ -33,4 +33,4 @@ class Test extends Db {
     public function getSKU(){
         return $this->sku;
     }
-}
+}   
