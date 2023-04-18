@@ -16,8 +16,12 @@
 <div id="testoutput"></div>    
 
 <script>
-    $.get("../private/Controllers/test.cont.php", function(data, status){
-        console.log(data);
+    // $.get("../private/Controllers/test.cont.php", function(data, status){
+    //     console.log(data);
+    //     $('#testoutput').html(data);
+    // });
+    $.post("../private/Controllers/test.cont.php", {'type': 'book'}, function(data){
+        console.log('data= ' ,data);
         $('#testoutput').html(data);
     });
 </script>

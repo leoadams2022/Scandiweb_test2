@@ -33,4 +33,16 @@ class Test extends Db {
     public function getSKU(){
         return $this->sku;
     }
+
+    public function addProduct($methodName){
+        $method = $this->$methodName;
+        return $method;
+    }
+
+    public function dvd(){
+        return 'this is comeing from the DVD method';
+    }
+    public function book(){
+        return 'this is comeing from the BOOK method';
+    }
 }   
