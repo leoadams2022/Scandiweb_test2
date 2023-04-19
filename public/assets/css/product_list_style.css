@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+    color: whitesmoke;
+}
+.flext_center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    width: 90%;
+    margin: 0.5rem auto;
+}
+
+body {
+    background: rgb(36,0,0);
+    background: linear-gradient(235deg, rgba(36,0,0,1) 0%, rgba(121,9,81,1) 42%, rgba(87,61,167,1) 80%, rgba(0,121,255,1) 100%);
+    background-attachment: fixed;
+}
+/* nav section  */
+section.nav_section.container {
+    background: rgb(0 0 0 / 10%);
+    box-shadow: rgb(0 0 0 / 73%) 0px 3px 8px;
+    padding: 0px 10px;
+    
+}
+.nav_warper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+/* main section  */
+.product_div {
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.product_props {
+    padding: 2px 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* foot section  */
+section.foot_section{
+    position: fixed;
+    bottom: 0px;
+    left: 5%;
+}

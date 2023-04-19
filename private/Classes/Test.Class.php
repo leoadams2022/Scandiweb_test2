@@ -7,13 +7,17 @@ class Test extends Db {
     protected $price;
     protected $type;
 
-    public function __construct($proId){
-        // $this->name = $config["name"];
-        $this->id = $proId;
-        $sql = "SELECT * FROM `products` WHERE `id` = $this->id";
-        $stmt = $this->connect()->query($sql);
+    public function __construct($proId=NULL){
+        if(is_null($proId)){
+            $this->id = $proId;
+            $sql = "SELECT * FROM `products`";
+            $stmt = $this->connect()->query($sql);
             $row = $stmt->fetch();
             $this->sku = $row->sku;
+        }
+        // $this->name = $config["name"];
+        
+        // return $data;
         // $this->getProduct();
         // $sql = "SELECT * FROM `products` ";
         // $stmt = $this->connect()->query($sql);
@@ -21,7 +25,16 @@ class Test extends Db {
         // return ($data);
         // // $this->sku = $data->sku;
       }
-  
+
+    public function getAllProducts(){
+        $sql = "SELECT * FROM `products`";
+        $stmt = $this->connect()->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;// $data[1]->sku;
+        // foreach ($data as $product) {
+        //     return $product->sku;
+        //   }
+    }
     public function getProduct(){
         $sql = "SELECT * FROM `products` WHERE `id` = $this->id";
         $stmt = $this->connect()->query($sql);
@@ -35,7 +48,7 @@ class Test extends Db {
     }
 
     public function addProduct($methodName){
-        $method = $this->$methodName;
+        $method = $this->$methodName();
         return $method;
     }
 
