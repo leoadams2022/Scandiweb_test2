@@ -27,13 +27,10 @@ class Test extends Db {
       }
 
     public function getAllProducts(){
-        $sql = "SELECT * FROM `products`";
-        $stmt = $this->connect()->query($sql);
-        $data = $stmt->fetchAll();
-        return $data;// $data[1]->sku;
-        // foreach ($data as $product) {
-        //     return $product->sku;
-        //   }
+        $stmt = $this->connect()->prepare("SELECT * FROM `products`");
+        $stmt->execute();
+        $arr = $stmt->fetchAll();
+        return $arr;
     }
     public function getProduct(){
         $sql = "SELECT * FROM `products` WHERE `id` = $this->id";
