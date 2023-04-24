@@ -22,8 +22,8 @@
         <div class="nav_warper">
             <h2 class="">Products List</h2>
             <div class="">
-                <button class='btn add_btn'>ADD</button>
-                <button class='btn delete_btn'>MASS DELETE</button>
+                <a class='btn add_btn' href='Product_Page.php'>ADD</a>
+                <button class='btn delete_btn' onclick="massDelete()">MASS DELETE</button>
             </div>
         </div>
         <hr>
@@ -42,69 +42,6 @@
         </div>
     </section>
 <!-- // foot section  -->
-
-<script>
-$.ajax({
-    url: '../private/Controllers/productsList.cont.php',
-    type: 'POST', 
-    data: {
-        request: 'getAllProducts'
-    },  
-    beforeSend: function() { 
-    },
-    complete: function() {
-    },
-    success: function(data, status, xhr){
-        data = JSON.parse(data)
-        products_section = document.getElementById('products_section');
-        products_section.innerHTML = '';
-        data.forEach(function(product, i){
-            
-            let productProp,productPropValue,productPropValueUnit;
-            if(product.type === 'dvd'){
-                productProp = 'Size';
-                productPropValue = product.size
-                productPropValueUnit = 'MB';
-            }else if(product.type === 'book'){
-                productProp = 'Weight';
-                productPropValue = product.weight
-                productPropValueUnit = 'KG';
-            }else if(product.type === 'furniture'){
-                productProp = 'Dimensions';
-                productPropValue = product.dimensions_h +'x'+ product.dimensions_w +'x'+ product.dimensions_l;
-                productPropValueUnit = ' ';
-            }
-            let productDiv = ` 
-                <div class="product_div">
-                    <div class="delete_div">
-                        <input type="checkbox" id="delete-checkbox_${i}" class="delete-checkbox">
-                        <label for="delete-checkbox_${i}" class="delete-checkbox-label">Delete</label>
-                    </div>
-                    <div class="product_img_div">
-                        <img class='' src="assets/images/${product.type}.png" alt="${product.type} product">
-                    </div>
-                    <div class="product_props ">
-                            <span class="">${product.name}</span>
-                            <span><span class="">${product.price}</span> $</span> 
-                    </div>
-                    <div class="product_props ">
-                            <span>Type: <span class="">${product.type}</span><span>
-                    </div>
-                    <div class="product_props ">
-                            <span class=''>${productProp}: <span class="">${productPropValue}</span> <span class=""> ${productPropValueUnit}</span></span>
-                    </div>
-                    <div class="product_props ">
-                            <span>SKU: <span class="">${product.sku}</span></span>
-                    </div>
-                </div>
-            `
-            products_section.innerHTML += productDiv;
-        });
-    },
-    error: function (Xhr, textStatus, errorMessage) {
-        console.log('Error' + errorMessage + ' status: '+ textStatus);
-    }                                       
-});
-</script>
+<script src="assets/js/product_list.js"></script>
 </body>
 </html>

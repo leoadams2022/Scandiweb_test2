@@ -7,6 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $Products = new Products();
             $data  = $Products->getAllProducts();
             echo (json_encode($data));
+        }elseif($request === 'massDelete'){
+            $Products = new Products();
+            $data  = $Products->deleteBySku($_POST['skuArr']);
+            echo (json_encode($data));
         }
     }
 }

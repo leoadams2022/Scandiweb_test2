@@ -27,6 +27,7 @@ body {
     font-size: 16px;
     transition: 0.5s;
     cursor: pointer;
+    text-decoration: none;
 }
 /* nav section  */
 section.nav_section.container {
@@ -42,20 +43,20 @@ section.nav_section.container {
     justify-content: space-between;
 }
 button.delete_btn,
-button.add_btn {
+.add_btn {
     color: #000;
 }
-button.add_btn {
+.add_btn {
     background: #6eff79;
 }
 button.delete_btn{
     background: #ff8a95;
 }
-button.add_btn:hover,
+.add_btn:hover,
 button.delete_btn:hover {
     color: #fff;
 }
-button.add_btn:hover{
+.add_btn:hover{
     background: green;
 }
 button.delete_btn:hover {
@@ -65,8 +66,8 @@ button.delete_btn:hover {
 section.main_section{
     max-width: 1200px;
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
     min-height: calc(100vh - 120px);
 }
 .product_div {
