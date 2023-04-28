@@ -31,7 +31,7 @@
         <div class="basic_info">
             <div>
                 <label for="sku" class="input_lable">SKU:</label>
-                <input type="text" id="sku" class="input text_input" name="sku">
+                <input type="text" id="sku" class="input text_input" name="sku" placeholder="SKU">
             </div>
             <div>
                 <label for="name" class="input_lable">Name:</label>
@@ -41,6 +41,7 @@
                 <label for="price" class="input_lable">Price:</label>
                 <input type="number" id="price" class="input number_input" name="price">
             </div>
+                
             <div>
                 <label for="productType" class="input_lable">Type switcher:</label>
                 <select name="" id="productType" name="productType" class="input productType_input">

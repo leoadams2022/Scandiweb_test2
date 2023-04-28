@@ -65,12 +65,46 @@ body {
 
 /* form section  */
 .basic_info {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: stretch;
+    flex-wrap: nowrap; 
+    align-items: stretch;*/
 }
 label.input_lable {
     width: 20%;
     display: inline-block;
+}
+.input {
+    padding: 8px 10px;
+    border: 0;
+    font-size: 18px;
+    margin: 5px;
+    background: #ffffff40;
+    color: black;
+    font-weight: bold;
+    border-bottom: white 1px solid;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius: 5px;
+    width: 100%;
+    transition: 0.5s all;
+}
+.input:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+
+.input::placeholder {
+    color: #000000b8;
+}
+.input:focus {
+    outline: none;
+    border-bottom: #00bbff 2px solid;
+}
+
+.basic_info {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
