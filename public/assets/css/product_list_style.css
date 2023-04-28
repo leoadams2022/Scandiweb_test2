@@ -30,10 +30,8 @@ body {
     text-decoration: none;
 }
 /* nav section  */
-section.nav_section.container {
+.nav_section {
     background: rgb(0 0 0 / 10%);
-    /* box-shadow: rgb(0 0 0 / 73%) 0px 3px 8px; 
-    padding: 0px 10px; */
 }
 .nav_warper{
     display: flex;
