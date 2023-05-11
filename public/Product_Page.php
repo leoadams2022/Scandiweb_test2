@@ -13,13 +13,14 @@
     <script src="assets/js/jQuery.js"></script>
 </head>
 <body>
+<form id="product_form">
 <!-- nav_section -->
 <section class='nav_section container'>
         <div class="nav_warper">
             <h2 class="">Products Add</h2>
             <div class="">
-                <button class='btn save_btn' onclick="">Save</button>
-                <button class='btn cancel_btn' onclick="">Cancel</button>
+                <button class='btn save_btn' type='submit' onclick="">Save</button>
+                <button class='btn cancel_btn' type="button" onclick="cancelAdding()">Cancel</button>
             </div>
         </div>
         <hr>
@@ -27,21 +28,21 @@
 <!-- // nav_section -->
 <!-- from_section -->
 <section class='from_section container'>
-    <form id="product_form" method="post" action="">
+    
         <div class="basic_info">
             <div>
                 <label for="sku" class="input_lable">SKU:</label>
-                <input type="text" id="sku" class="input text_input" name="sku" placeholder="XX00-XX-X00X">
+                <input type="text" id="sku" class="input text_input" name="sku" placeholder="XX00-XX-X00X" onkeypress="return /[0-9A-Za-z-]/i.test(event.key)">
                 <span id="warning_span_sku" class="warning_span">Lorem ipsum dolor sit amet.</span>
             </div>
             <div>
                 <label for="name" class="input_lable">Name:</label>
-                <input type="text" id="name" class="input text_input" name="name">
+                <input type="text" id="name" class="input text_input" name="name" placeholder='product name'>
                 <span id="warning_span_name" class="warning_span">Lorem ipsum dolor sit amet.</span>
             </div>
             <div>
                 <label for="price" class="input_lable">Price:</label>
-                <input type="number" min='0' id="price" class="input number_input" name="price" onkeypress="return /[0-9]/i.test(event.key)">
+                <input type="number" min='0' id="price" class="input number_input" name="price" placeholder="price in USD" onkeypress="return /[0-9]/i.test(event.key)">
                 <span id="warning_span_price" class="warning_span">Lorem ipsum dolor sit amet.</span>
             </div>
                 
@@ -93,16 +94,55 @@
             </div>
         </div>
         <span id="warning_span_sku" class="warning_span">Lorem ipsum dolor sit amet.</span>
-        
-    </form>
+        <!-- <button  type="submit" class="d-none" id="productFormSubmitBtn" >submit</button> -->
+    
 </section>
 <!-- // from_section -->
-
+</form>
 <script>
+function cancelAdding(){
+    document.getElementById("product_form").reset();
+    typeSwitch(productType.value)
+    // window.location.href = "Product_List.php"
+}
 
+
+const element = document.querySelector('#product_form');
+element.addEventListener('submit', event => {
+  
+//   console.log(event)
+saveProduct(event)
+
+  
+});
+function saveProduct(event){
+    /**
+     * make sure all input values are good
+     * 
+     * make sure SKU is not Dup
+     * 
+     * add the product to DB and Go back to 
+     */
+    event.preventDefault();
+    const productFormData = new FormData(event.target);
+    const FormObj = {};
+    productFormData.forEach((value, key) => (FormObj[key] = value));
+    validateFormInput(FormObj)
+   
+}
+
+function validateFormInput(FormObj){
+    const {sku,name,price,size,weight,height,width,lenght} = FormObj;
+    console.log(sku);
+    // let regex = /[A-Za-z][A-Za-z]\d\d-[A-Za-z][A-Za-z]-[A-Za-z]\d\d[A-Za-z]/i;
+    // useRegex(sku.value,regex) ? console.log('sku good') : console.log('sku bad')
+    
+}
 let productType = document.getElementById('productType')
 productType.addEventListener('change', () => {
-    let productTypeValue = productType.value;
+    typeSwitch(productType.value)
+});
+function typeSwitch(productTypeValue){
     let dvdDiv = document.getElementById('dvd')
     ,bookDiv = document.getElementById('book')
     ,furnitureDiv = document.getElementById('furniture');
@@ -119,16 +159,30 @@ productType.addEventListener('change', () => {
         bookDiv.classList.add('d-none')
         furnitureDiv.classList.remove('d-none')  
     }
-});
+}
 function useRegex(value,regex) {
     return regex.test(value);
 }
 let sku = document.getElementById('sku')
-sku.addEventListener('keyup', () => {
+sku.addEventListener('keyup', function(e){
+
+    var foo = this.value.split("-").join("");
+    // console.log(/[0-9A-Za-z^\S-]/i.test(foo) )
+    if (foo.length > 0) {
+        foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
+        
+    }
+    this.value = foo;
+
+    // let regex = /[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+/i;
+
     let warningSpan = document.getElementById('warning_span_sku')
+    // console.log('length: ',sku.value.length)
     if(sku.value.length > 11){
-        // XX00-XX-X00X
-        let regex = /[A-Za-z][A-Za-z]\d\d-[A-Za-z][A-Za-z]-[A-Za-z]\d\d[A-Za-z]/i;
+
+        let regex = /[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]-[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]-[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]/i;
+        console.log('sku.value: ',sku.value)
+        console.log('regex: ',useRegex(sku.value,regex))
         if(useRegex(sku.value,regex)){
             sku.classList.remove('invalid')
             warningSpan.classList.remove('show')
@@ -142,10 +196,19 @@ sku.addEventListener('keyup', () => {
         warningSpan.classList.remove('show')
     }
 })
+
+document.querySelector('.creditCardText').addEventListener('input', function(e) {
+  var foo = this.value.split("-").join("");
+  if (foo.length > 0) {
+    foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
+  }
+  this.value = foo;
+});
+
 let name = document.getElementById('name')
 name.addEventListener('keyup', () => {
     let warningSpan = document.getElementById('warning_span_name')
-    if(name.value.length > 2 && name.value.length < 16){
+    if(name.value.length >= 2 && name.value.length < 16){
         let regex = /^[A-Za-z\s]*$/;
         if(useRegex(name.value,regex)){
             name.classList.remove('invalid')
