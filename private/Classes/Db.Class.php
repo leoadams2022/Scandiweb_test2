@@ -6,6 +6,7 @@ class Db
     private $user = 'root';
     private $pwd = '';
     private $dbName = 'scandiweb_test';
+    private $pdo;
 
     protected function connect(){
         $dsn ='mysql:host=' . $this->host . ';dbname=' . $this->dbName;

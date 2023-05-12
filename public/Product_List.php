@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <!-- product list style  -->
     <link rel="stylesheet" href="assets/css/product_list_style.css">
-    <!-- bootstrap  -->
-    <!-- <link rel="stylesheet" href="assets/css/Bootstrap_v5.3.css"> -->
-    <!-- bootstrap  -->
-    <!-- <script src="assets/js/Bootstrap_v5.3.js"></script> -->
-    <!-- jQuery  -->
-    <script src="assets/js/jQuery.js"></script>
 </head>
 <body>
 <!-- nav_section -->

@@ -86,6 +86,7 @@ label.input_lable {
 }
 input::placeholder {
     color: #adadad;
+    text-transform: capitalize;
 }
 .input{
     padding: 6px 12px;
@@ -119,6 +120,7 @@ input#sku {
     font-weight: 500;
     color: #ff8a95;
     padding: 10px 5px;
+    text-transform: capitalize;
     opacity: 0;
     transition: opacity 0.5s;
 }
